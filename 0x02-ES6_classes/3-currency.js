@@ -24,15 +24,3 @@ export default class Currency {
     return `${this._name} (${this._code})`;
   }
 }
-
-  set name(na) {
-    if (na !== 'string') {
-      throw new TypeError('Name must be a string');
-    }
-    this._name = na;
-  }
-
-  displayFullCurrency() {
-    return `${this._name} (${this._code})`;
-  }
-}
