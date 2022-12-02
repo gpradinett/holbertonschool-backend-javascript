@@ -1,26 +1,23 @@
-/* eslint-disable */
-import Currency from './3-currency.js'
-
 export default class Pricing {
-  constructor(mount, currency) {
-    this._amount = mount;
+  constructor(amount, currency) {
+    this._amount = amount;
     this._currency = currency;
   }
 
-  get mount() {
+  get amount() {
     return this._amount;
   }
 
-  set mount(value) {
-    this._amount = value;
+  set amount(n) {
+    this._amount = n;
   }
 
   get currency() {
     return this._currency;
   }
 
-  set currency(value) {
-    this._currency = value;
+  set currency(n) {
+    this._currency = n;
   }
 
   displayFullPrice() {
