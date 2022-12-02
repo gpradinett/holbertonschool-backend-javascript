@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default class Currency {
   constructor(code, name) {
     this._code = code;
@@ -9,16 +8,22 @@ export default class Currency {
     return this._code;
   }
 
-  set code(co) {
-    if (co !== 'string') {
-      throw new TypeError('Code must be a string');
-    }
-    this._code = co;
+  set code(n) {
+    this._code = n;
   }
 
   get name() {
-    return this.name;
+    return this._name;
   }
+
+  set name(n) {
+    this._name = n;
+  }
+
+  displayFullCurrency() {
+    return `${this._name} (${this._code})`;
+  }
+}
 
   set name(na) {
     if (na !== 'string') {
