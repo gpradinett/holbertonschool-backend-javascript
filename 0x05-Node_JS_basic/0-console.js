@@ -1,4 +1,4 @@
-const displayMessage(args) => {
+const displayMessage = (args) => {
     console.log(args);
 };
 
