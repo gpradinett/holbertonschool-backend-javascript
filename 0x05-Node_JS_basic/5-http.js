@@ -1,34 +1,42 @@
-const http = require('http');
 
+const http = require('http');
 const countStudents = require('./3-read_file_async');
 
-const args = process.argv.slice(2);
-
-const hostname = '127.0.0.1';
-const port = 1245;
-
-const app = http.createServer(async (req, res) => {
-  res.statusCode = 200;
+const app = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
-
-  const { url } = req;
-
-  if (url === '/') res.end('Hello Holberton School!');
-  else if (url === '/students') {
-    res.write('This is the list of our students\n');
-    try {
-      const students = await countStudents(args.toString());
-      res.end(`${students.join('\n')}`);
-    } catch (error) {
-      res.end(error.message);
-    }
+  switch (req.url) {
+    case '/':
+      res.writeHead(200);
+      res.end('Hello Holberton School!');
+      break;
+    case '/students':
+      res.writeHead(200);
+      res.write('This is the list of our students\n');
+      countStudents(process.argv[2])
+        .then((v) => {
+          res.write(`Number of students: ${v.counter}\n`);
+          let len = 0;
+          for (const key in v.inFields) {
+            if (Object.prototype.hasOwnProperty.call(v.inFields, key)) {
+              res.write(`Number of students in ${key}: ${v.inFields[key].counter}. List: ${v.inFields[key].students}`);
+              if (len !== Object.keys(v.inFields).length - 1) res.write('\n');
+              len += 1;
+            }
+          }
+          res.end();
+        })
+        .catch(() => {
+          res.writeHead(404);
+          res.write('This is the list of our students\n');
+          res.end('Cannot load the database');
+        });
+      break;
+    default:
+      res.writeHead(404);
+      res.write('This is the list of our students\n');
+      res.end(('Cannot load the database'));
   }
-  res.statusCode = 404;
-  res.end();
 });
-
-app.listen(port, hostname, () => {
-  // console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(1245);
 
 module.exports = app;
