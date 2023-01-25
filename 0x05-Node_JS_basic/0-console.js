@@ -1,4 +1,4 @@
-function displayMessage(args) => {
+function displayMessage(args){
     console.log(args);
 };
 
