@@ -1,21 +1,18 @@
 {
-  "name": "0x13-unittests_in_js",
-  "version": "1.0.0",
-  "description": "Unittesting",
-  "main": "0-calcul.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "mocha"
   },
-  "keywords": [],
+  "name": "0x06-unittests_in_js",
+  "version": "1.0.0",
+  "description": "Project: 0x06. Unittests in JS",
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^6.4.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.17.0",
-    "mocha": "^8.2.1",
-    "sinon": "^9.2.3"
+    "chai": "^4.3.7",
+    "sinon": "^15.0.1"
   }
 }
